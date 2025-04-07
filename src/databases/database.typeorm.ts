@@ -11,6 +11,9 @@ export const mmogoDbConfig: TypeOrmModuleAsyncOptions = {
     url: configService.mongoDdCreds.uri,
     database: configService.mongoDdCreds.database,
     ssl: true,
+    tls: true,
+  tlsAllowInvalidCertificates: false, // Set to true only for testing
+  tlsInsecure: false,
     entities: [__dirname + '/../**/*.entity{.ts,.js}'],
     synchronize: process.env.NODE_ENV !== 'production', 
     logging: process.env.NODE_ENV === 'development', 

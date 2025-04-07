@@ -30,15 +30,16 @@
     "@nestjs/platform-express": "^11.0.1",
     "@nestjs/swagger": "^11.1.1",
     "@nestjs/typeorm": "^11.0.0",
+    "@types/bcrypt": "^5.0.2",
     "@vonage/auth": "^1.12.0",
     "@vonage/messages": "^1.19.0",
     "@vonage/server-sdk": "^3.20.1",
     "axios": "^1.8.4",
     "bcrypt": "^5.1.1",
+    "bcryptjs": "^3.0.2",
     "class-transformer": "^0.5.1",
     "class-validator": "^0.14.1",
     "dotenv": "^16.4.7",
-    "mailer-async-options.interface": "link:@nestjs-modules/mailer/dist/interfaces/mailer-async-options.interface",
     "mongodb": "^6.15.0",
     "passport-jwt": "^4.0.1",
     "passport-local": "^1.0.0",
@@ -46,7 +47,8 @@
     "reflect-metadata": "^0.2.2",
     "rxjs": "^7.8.1",
     "swagger-ui-express": "^5.0.1",
-    "typeorm": "^0.3.22"
+    "typeorm": "^0.3.22",
+    "uuid": "^11.1.0"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3.2.0",

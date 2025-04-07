@@ -17,7 +17,7 @@ export class AuthService {
     private readonly usersService: UsersService,
     private readonly otpService: OtpService,
     private readonly jwtService: JwtService,
-  ) {}
+  ) { }
 
   async validateUser(phone: string, password: string): Promise<User | null> {
     const user = await this.usersService.findByPhone(phone);
@@ -43,14 +43,14 @@ export class AuthService {
 
   // async register(dto: CreateUserDto) {
   //   const { password, phone, name } = dto;
-    
+
   //   const existing = await this.usersService.findByPhone(phone);
   //   if (existing) {
   //     throw new BadRequestException('Phone number already registered');
   //   }
 
   //   const hashedPassword = await bcrypt.hash(password, 10);
-    
+
   //   const user = await this.usersService.create({ phone, password: hashedPassword, name });
   //   return this.login(user); 
   // }
@@ -58,16 +58,16 @@ export class AuthService {
     try {
       const { password, phone, name } = dto;
 
-    const existing = await this.usersService.findByPhone(phone);
-    if (existing) {
-      throw new BadRequestException('Phone number already registered');
-    }
+      const existing = await this.usersService.findByPhone(phone);
+      if (existing) {
+        throw new BadRequestException('Phone number already registered');
+      }
 
-    const hashedPassword = await bcrypt.hash(password, 10);
-    await this.usersService.create({ phone, password: hashedPassword, name });
-    await this.otpService.generateOtp(phone);
+      const hashedPassword = await bcrypt.hash(password, 10);
+      await this.usersService.create({ phone, password: hashedPassword, name });
+      await this.otpService.generateOtp(phone);
 
-    return { message: 'OTP sent, please verify your phone' };
+      return { message: 'OTP sent, please verify your phone' };
     } catch (error) {
       throw error;
     }
@@ -83,7 +83,7 @@ export class AuthService {
   }
 
   async verifyOtp(dto: VerifyOtpDto) {
-    const {phone, code} = dto
+    const { phone, code } = dto
     const user = await this.usersService.findByPhone(phone);
     if (!user) throw new UnauthorizedException('User not found');
 
@@ -91,7 +91,7 @@ export class AuthService {
     if (!isValid) throw new UnauthorizedException('Invalid or expired OTP');
 
     user.isPhoneVerified = true;
-    await this.usersService.update(user.id, {...user});
+    await this.usersService.update(user.id, { ...user });
 
     return this.login(user);
   }
